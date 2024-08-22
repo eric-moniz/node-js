@@ -20,7 +20,15 @@ function operation() {
         .then(answear => {
             const action = answear['action'];
 
-            console.log(action);
+            if (action === 'Criar Conta') {
+                createAccount();
+            }
         })
         .catch(err => console.log(chalk.bgRed.white.bold(err)));
+}
+
+// create an account
+function createAccount() {
+    console.log(chalk.bgGreen.black.bold('Parabéns por escolher nosso banco!'));
+    console.log(chalk.green('Defina as opções da sua conta a seguir'));
 }
