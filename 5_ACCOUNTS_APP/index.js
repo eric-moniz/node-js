@@ -201,10 +201,32 @@ function withdraw() {
                 .then(answer => {
                     const amount = answer['amount'];
 
-                    console.log(amount);
-                    operation();
+                    removeAmount(accountName, amount);
                 })
                 .catch(err => console.log(chalk.bgRed.white.bold(err)));
         })
         .catch(err => console.log(chalk.bgRed.white.bold(err)));
+}
+
+function removeAmount(accountName, amount) {
+    const accountData = getAccount(accountName);
+
+    if (!amount) {
+        console.log(chalk.red(' Não foi inserido um valor, tente novamente! '));
+        return withdraw();
+    }
+
+    if (accountData.balance < amount) {
+        console.log(chalk.red(' Saldo insuficiente para saque! '));
+        return withdraw();
+    }
+
+    accountData.balance = parseFloat(accountData.balance) - parseFloat(amount);
+
+    fs.writeFileSync(`accounts/${accountName}.json`, JSON.stringify(accountData), err =>
+        console.log(chalk.bgRed.white.bold(err))
+    );
+
+    console.log(chalk.green(` Foi realizado um saque no valor de R$${amount} da sua conta! `));
+    operation();
 }
