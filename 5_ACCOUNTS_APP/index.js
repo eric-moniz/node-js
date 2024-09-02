@@ -25,6 +25,7 @@ function operation() {
             } else if (action === 'Depositar') {
                 deposit();
             } else if (action === 'Consultar Saldo') {
+                getAccountBalance();
             } else if (action === 'Sacar') {
             } else if (action === 'Sair') {
                 console.log(chalk.bgBlue.black.bold(' Obrigado por usar o Accounts! '));
@@ -144,4 +145,31 @@ function getAccount(accountName) {
     });
 
     return JSON.parse(accountJSON);
+}
+
+// show account balance
+function getAccountBalance() {
+    inquirer
+        .prompt([
+            {
+                name: 'accountName',
+                message: 'Qual o nome da sua conta?',
+            },
+        ])
+        .then(answer => {
+            const accountName = answer['accountName'];
+
+            // verifu if account exists
+            if (!checkAccount(accountName)) {
+                return getAccountBalance();
+            }
+
+            const accountData = getAccount(accountName);
+
+            console.log(
+                chalk.bgBlue.black(` Olá, o saldo da sua conta é de R$${accountData.balance} `)
+            );
+            operation();
+        })
+        .catch(err => console.log(chalk.bgRed.white.bold(err)));
 }
