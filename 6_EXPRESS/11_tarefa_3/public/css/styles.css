@@ -1,0 +1,39 @@
+body {
+    background-color: #dfdfdf;
+    padding: 2em;
+}
+
+h1 {
+    text-align: center;
+}
+
+.red {
+    color: lightcoral;
+}
+
+.blue {
+    color: rgb(10, 89, 138);
+}
+
+ul {
+    text-align: center;
+    list-style-type: none;
+}
+
+a {
+    background-color: lightblue;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    transition: 0.3s all;
+}
+
+a:hover {
+    background-color: rgb(67, 205, 251);
+}
+
+a:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
