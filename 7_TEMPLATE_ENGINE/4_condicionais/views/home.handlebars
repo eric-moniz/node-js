@@ -1,0 +1,10 @@
+<h1>Ola Handlebars</h1>
+<p>O nome do usuário é {{user.name}} {{user.surname}}</p>
+<p>{{palavra}}</p>
+{{#if auth}}
+    <p>
+        Você está autenticado,
+        <a href='/dashboard'>clique aqui</a>
+        para acessar a área de menbros
+    </p>
+{{/if}}
