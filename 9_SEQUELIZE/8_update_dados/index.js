@@ -92,7 +92,9 @@ app.get('/', async (req, res) => {
     res.render('home', { users });
 });
 
-conn.sync()
+conn
+    //.sync({force: true}) refaz a construção das tabelas, mas perde-se os dados cadastrados!!!
+    .sync()
     .then(() => {
         app.listen(3000, () => console.log('Server running...'));
     })
